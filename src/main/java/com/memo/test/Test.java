@@ -14,4 +14,9 @@ public class Test {
 		
 		return "hello world";
 	}
+	
+	@RequestMapping("/test_jsp")
+	public String testJsp() {
+		return "test/test";
+	}
 }
