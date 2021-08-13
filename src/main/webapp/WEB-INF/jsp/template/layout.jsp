@@ -20,7 +20,7 @@
       <section class="content">
         <jsp:include page="../${viewName}.jsp" />
       </section>
-      <footer class="bg-info d-flex justify-content-center align-items-center">
+      <footer class="bg-info d-flex justify-content-center align-items-center mt-4">
          <jsp:include page="../include/footer.jsp" />
       </footer>
    </div>

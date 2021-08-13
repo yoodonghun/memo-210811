@@ -1,10 +1,16 @@
 @charset "UTF-8";
 
-#wrap {width:1200px; height:1000px; margin:auto}
-header {height: 100px;}
-header .logo {width: 300px; height:100px}
-header .login-info {width:900px; height:100px}
+a { text-decoration: none; color:#000;}
+a:hover { text-decoration:none; color: #000; }
 
-.content {height: 500px;}
+/* layout */
+.header {height:80px;}
 
-footer {height: 100px;}
+.sign-up-box {width:600px; background-color:#F4FCFD; margin-top:20px; box-shadow:5px 5px 5px 5px #BDC0C0;}
+.sign-up-subject {margin:20px; font-weight:bold;}
+
+.shadow-box {width:550px; background-color:#F4FCFD; margin-top:20px; box-shadow:5px 5px 5px 5px #BDC0C0;}
+.login-box {width:400px;}
+
+.contents-box {width:600px;}
+footer {height:100px;}
