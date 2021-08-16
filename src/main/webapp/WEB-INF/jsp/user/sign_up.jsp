@@ -8,8 +8,8 @@
 			<span class="sign-up-subject">ID</span>
 			<%-- 인풋 옆에 중복확인 버튼을 옆에 붙이기 위해 div 만들고 d-flex --%>
 			<div class="d-flex ml-3 mt-3">
-				<input type="text" name="loginId" class="form-control col-6" placeholder="ID를 입력해주세요">
-				<button type="button" id="loginIdCheckBtn" class="btn btn-success">중복확인</button>
+				<input type="text" name="loginId" class="form-control col-9" placeholder="ID를 입력해주세요">
+				<button type="button" id="loginIdCheckBtn" class="btn btn-success ml-2">중복확인</button>
 			</div>
 			
 			<%-- 아이디 체크 결과 --%>
@@ -21,22 +21,22 @@
 			
 			<span class="sign-up-subject">Password</span>
 			<div class="m-3">
-				<input type="password" name="password" class="form-control col-6" placeholder="비밀번호를 입력하세요">
+				<input type="password" name="password" class="form-control col-9" placeholder="비밀번호를 입력하세요">
 			</div>
 
 			<span class="sign-up-subject">Confirm password</span>
 			<div class="m-3">
-				<input type="password" name="confirmPassword" class="form-control col-6" placeholder="비밀번호를 입력하세요">
+				<input type="password" name="confirmPassword" class="form-control col-9" placeholder="비밀번호를 입력하세요">
 			</div>
 
 			<span class="sign-up-subject">Name</span>
 			<div class="m-3">
-				<input type="text" name="name" class="form-control col-6" placeholder="이름을 입력하세요">
+				<input type="text" name="name" class="form-control col-9" placeholder="이름을 입력하세요">
 			</div>
 
 			<span class="sign-up-subject">이메일</span>
 			<div class="m-3">
-				<input type="text" name="email" class="form-control col-6" placeholder="이메일을 입력하세요">
+				<input type="text" name="email" class="form-control col-9" placeholder="이메일을 입력하세요">
 			</div>
 			
 			<br>
@@ -64,7 +64,7 @@ $(document).ready(function() {
 		  //화면을 이동시키지 않고 AJAX 통신으로 중복 여부 확인하고 동적으로 문구 노출
 		  $.ajax({
 			  url: "/user/is_duplicated_id"
-			  ,type: "post"
+			  
 			  ,data: {"loginId": loginId}
 		      ,success: function(data){
 		    	  if(data.result == true){ //중복인 경우
@@ -73,11 +73,11 @@ $(document).ready(function() {
 		 			 $("#idCheckOk").addClass("d-none"); //숨김
 		    	  }else{
 		    		  //중복이 아닌 경우
-		 			 $("#idCheckOk").removeClass("d-none"); //사용가능
-		    		 $("#idCheckDuplicated").addClass("d-none"); //숨김
+		 			 $("#idCheckOk").removeClass("d-none"); //사용가능		    		 
 		    		 $("#idCheckLength").addClass("d-none"); //숨김
+		    		 $("#idCheckDuplicated").addClass("d-none"); //숨김
 		    	  }
-		      }, error: function(e){
+		      }, error: function(error){
 		    	  alert("아이디 중복 확인에 실패했습니다.")
 		      }
 		  });
@@ -102,6 +102,7 @@ $(document).ready(function() {
 		  }
 		  
 		  //비밀번호 확인 일치 여부
+		  
 		  if(password != confirmPassword){
 			  alert("비밀번호가 일치하지 않습니다");
 			  //텍스트를 초기화한다

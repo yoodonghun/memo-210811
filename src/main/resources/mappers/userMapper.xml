@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="/com.memo.user.dao.UserDAO">
+ <mapper namespace="com.memo.user.dao.UserDAO">
     <select id="selectUserByLoginId" parameterType="string" resultType="com.memo.user.model.User">
        SELECT
           `id`
@@ -16,6 +16,22 @@
           `user`
        WHERE
           `loginId` = #{loginId}
+    </select>
+    
+    <select id="selectUserByLoginIdAndPassword" parameterType="string" resultType="com.memo.user.model.User">
+       SELECT
+          `id`
+          ,`loginId`
+          ,`password`
+          ,`name`
+          ,`email`
+          ,`createdAt`
+          ,`updatedAt`
+       FROM
+          `user`
+       WHERE
+          `loginId` = #{loginId}
+          AND `password` = #{password}
     </select>
     
     <insert id="insertUser" parameterType="map">

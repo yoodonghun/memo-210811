@@ -1,5 +1,8 @@
 package com.memo.user;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,9 +47,36 @@ public class UserController {
 		//암호화
 		String encryptPassword = EncryptUtils.md5(password);
 		//DB insert
-		userBO.addUser(loginId, encryptPassword, name, email);
+		userBO.insertUser(loginId, encryptPassword, name, email);
 		
 		return "redirect:/user/sign_up_view";
+	}
+	/**
+	 * 로그인 화면
+	 * @param model
+	 * @return
+	 */
+	
+	@RequestMapping("/sign_in_view")
+	public String signInView(Model model) {
+		model.addAttribute("viewName", "user/sign_in");
+		
+		return "template/layout";
+	}
+	/**
+	 * 로그아웃
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/sign_out")
+	public String signOut(HttpServletRequest request) {
+		//로그아웃
+		HttpSession session = request.getSession();
+		session.removeAttribute("userLoginId");
+		session.removeAttribute("userName");
+		session.removeAttribute("userId");
+		
+		return "redirect:/user/sign_in_view";
 	}
 	
 }
