@@ -7,13 +7,13 @@ import com.memo.user.model.User;
 
 @Repository
 public interface UserDAO {
-   public User selectUserByLoginId(String loginId);
+   public User selectUserByLoginId(@Param("loginId") String loginId);
 
    public User selectUserByLoginIdAndPassword(
 		   @Param("loginId") String loginId,
 		   @Param("password") String password);
    
-   public void insertUser(
+   public int insertUser(
 		  @Param("loginId") String loginId,
 		  @Param("password") String password,
 		  @Param("name") String name,

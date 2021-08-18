@@ -34,13 +34,13 @@
     		   e.preventDefault(); //submit 수행 중단(다른 화면으로 바뀌는거 중단)
     		   
     		   //validation
-    		   let login = $("input[name=loginId]").val().trim();
+    		   let login = $("#loginId").val().trim();
     		   if(loginId == ""){
     			   alert("아이디를 입력해주세요");
     			   return;
     		   }
     		   
-    		   let password = $("#input[name=password]").val();
+    		   let password = $("#password").val();
     		   if(password == ""){
     			   alert("비밀번호를 입력해주세요");
     			   return;

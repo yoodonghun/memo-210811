@@ -21,7 +21,8 @@ public class UserBO {
 	  return userDAO.selectUserByLoginIdAndPassword(loginId, password);
   }
   
-  public void insertUser(String loginId, String password, String name, String email) {
-	  userDAO.insertUser(loginId, password, name, email);
+  public int insertUser(String loginId, String password, String name, String email) {
+	  return userDAO.insertUser(loginId, password, name, email);
+	
   }
 }
