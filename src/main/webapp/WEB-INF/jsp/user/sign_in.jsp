@@ -22,7 +22,7 @@
               <input type="password" class="form-control" id="password" name=password">
            </div>
            
-           <input type="submit" class="btn btn-primary btn-block" value="로그인">
+           <input type="submit" id="login" class="btn btn-primary btn-block" value="로그인">
            <a href="/user/sign_up_view" class="btn btn-dark btn-block">회원가입</a>
          </form>
       </div>
@@ -32,9 +32,10 @@
        $(document).ready(function(){
     	   $("#loginForm").submit(function(e){
     		   e.preventDefault(); //submit 수행 중단(다른 화면으로 바뀌는거 중단)
+    		   //alert("dd");
     		   
     		   //validation
-    		   let login = $("#loginId").val().trim();
+    		   let loginId = $("#loginId").val().trim();
     		   if(loginId == ""){
     			   alert("아이디를 입력해주세요");
     			   return;
@@ -48,11 +49,13 @@
     		   
     		   //JAJX로 submit
     		   let url = $(this).attr("action");
+    		   alert(url);
     		   let params = $(this).serialize(); //로그인 패스워드 데이터들
     		   
     		   $.post(url. params).done(function(data){
+    			   
     			   if(data.result == "success"){
-    				   location.href = "/post/post_list_view";
+    				   location.href = "/post/post_list_view"; 
     			   }else{
     				   alert("로그인에 실패했습니다");
     			   }

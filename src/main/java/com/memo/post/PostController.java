@@ -24,6 +24,6 @@ public class PostController {
 		
 		model.addAttribute("viewName", "post/post_list");
 		
-		return "template/layout";
+		return "redirect:/user/sign_in_view";
 	}
 }

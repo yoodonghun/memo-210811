@@ -72,7 +72,7 @@ public class UserRestController {
 	   
    }
    
-   @PostMapping("sign_in")
+   @PostMapping("/sign_in")
    public Map<String, String> signIn(HttpServletRequest request,
 		   @RequestParam("loginId") String loginId,
 		   @RequestParam("password") String password){
