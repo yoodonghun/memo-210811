@@ -49,7 +49,7 @@
     		   
     		   //JAJX로 submit
     		   let url = $(this).attr("action");
-    		   alert(url);
+    		   
     		   let params = $(this).serialize(); //로그인 패스워드 데이터들
     		   
     		   $.post(url. params).done(function(data){

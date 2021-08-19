@@ -72,38 +72,28 @@ public class UserRestController {
 	   
    }
    
-   @PostMapping("/sign_in")
-   public Map<String, String> signIn(HttpServletRequest request,
-		   @RequestParam("loginId") String loginId,
-		   @RequestParam("password") String password){
-	   
-	   //password를 md5로 해싱한다
-	   String encryptpassword =  EncryptUtils.md5(password);
-	   
-	   //loginId, password로 user를 가져와서 있으면 로그인 성공
-	   User user = userBO.getUserByLoginIdAndPassword(loginId, encryptpassword);
-	    Map<String, String> result = new HashMap<>();
-	    
-	   if(user != null) {
-		   // 성공 : 세션에 저장(로그아웃 누르기 전까지 모든 페이지에 로그인 상태 유지)
-		  HttpSession session = request.getSession();   
-		  session.setAttribute("userLoginId", user.getLoginId());
+   @RequestMapping("/sign_in")
+	public Map<String, Object> signIn(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password,
+			HttpServletRequest request) {
 		
-	       result.put("result", "success");  
-		   
-	   }else {
-		   // 실패 : 에러 처리 리턴
-		   result.put("result", "fail");
-		   result.put("massage", "존재하지 않는 아이디입니다");
-		   
-		   
-	   }
-	   
-	   
-	   
-	   	   return result;
-	   
-   }
+		String encryptPassword = EncryptUtils.md5(password);
+		User user = userBO.getUserByLoginIdAndPassword(loginId, encryptPassword);
+		
+		Map<String, Object> result = new HashMap<>();
+		if (user != null) {
+			result.put("result", "success");
+			// 로그인 처리 - 세션에 저장(로그인 상태를 유지한다)
+			HttpSession session = request.getSession();
+			session.setAttribute("userLoginId", user.getLoginId());
+			session.setAttribute("userName", user.getName());	
+			session.setAttribute("userId", user.getId());	
+		} else {
+			result.put("error", "존재하지 않는 사용자 입니다.");
+		}
+		return result;
+	}
 }
 	   
 	   
