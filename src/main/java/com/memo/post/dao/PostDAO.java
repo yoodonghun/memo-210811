@@ -1,5 +1,19 @@
 package com.memo.post.dao;
 
-public interface PostDAO {
+import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import com.memo.post.model.Post;
+
+@Repository
+public interface PostDAO {
+   public List<Post> selectPostListByUserId(
+		   @Param("userId") int userId,
+		   @Param("direction") String direction,
+		   @Param("standardId") Integer standardId,
+		   @Param("limit") int limit);
+   
+  
 }

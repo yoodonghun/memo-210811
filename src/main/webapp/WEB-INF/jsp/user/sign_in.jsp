@@ -11,7 +11,7 @@
               <div class="input-group-prepend">
                  <span class="input-group-text">ID</span>
               </div>
-              <input type="text" class="form-control" id="loginId" name=loginId">
+              <input type="text" class="form-control" id="loginId" name="loginId">
            </div>
            
            <div class="input-group mb-3">
@@ -19,7 +19,7 @@
               <div class="input-group-prepend">
                  <span class="input-group-text">PW</span>
               </div>
-              <input type="password" class="form-control" id="password" name=password">
+              <input type="password" class="form-control" id="password" name="password">
            </div>
            
            <input type="submit" id="login" class="btn btn-primary btn-block" value="로그인">
@@ -49,10 +49,9 @@
     		   
     		   //JAJX로 submit
     		   let url = $(this).attr("action");
-    		   
     		   let params = $(this).serialize(); //로그인 패스워드 데이터들
     		   
-    		   $.post(url. params).done(function(data){
+    		   $.post(url, params).done(function(data){
     			   
     			   if(data.result == "success"){
     				   location.href = "/post/post_list_view"; 

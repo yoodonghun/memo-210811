@@ -11,6 +11,7 @@ public class Post {
 	private int likeContent;
 	private Date createdAt;
 	private Date updatedAt;
+	
 	public int getId() {
 		return id;
 	}
