@@ -7,34 +7,34 @@
 		SELECT
 			`id`
 			, `userId`
-			, `userName`
+			, `subject`
 			, `content`
 			, `imagePath`
-			, `likeContent`
 			, `createdAt`
 			, `updatedAt`
 		FROM 
 			`post`
 		WHERE
 			`userId` = #{userId}
-		<if test="direction == null">
+			<!-- 페이징이 없는 경우(첫 페이지) -->
+           <if test="direction == null">
 		ORDER BY `id` DESC
+		   </if>
+		   <!-- 이전을 클릭 했을때 -->
+		   <if test="direction == 'prev'">
+		   <![CDATA[ 
+		   AND `id` > #{standardId}
+		   ]]>
+		ORDER BY `id` ASC   
+		   </if>
+		   
+		   <!-- 다음을 클릭 했을때 -->
+		   <if test="direction == 'next'">
+		   <![CDATA[
+		   AND `id` > #{standardId}
+		   ]]>
+		   </if>
 		LIMIT ${limit}
-		</if>
-		<if test="direction == 'prev'">
-			<![CDATA[ 
-			AND `id` > #{standardId} 
-			]]>
-		ORDER BY `id`
-		LIMIT ${limit}
-		</if>
-		<if test="direction == 'next'">
-			<![CDATA[ 
-			AND `id` < #{standardId} 
-			]]>
-		ORDER BY `id` DESC
-		LIMIT ${limit}
-		</if>
 	</select>
 
 	

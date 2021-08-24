@@ -38,8 +38,22 @@ public class PostController {
 		
 				
 		List<Post> postList = postBO.getPostListByUserId(userId, prevIdParam, nextIdParam);
-		model.addAttribute("postList", postList);
-		model.addAttribute("viewName", "post/post_list");
+		if(postList.isEmpty() == false) {
+			int prevId = postList.get(0).getId();
+		    int nextId = postList.get(postList.size() - 1).getId();
+		    
+		    model.addAttribute("postList", postList); //리스트 중 가장 앞쪽(제일 큰 아이디)
+			model.addAttribute("viewName", "post/post_list");// 리스트 중 가장 뒷쪽(제일 작은 아이디)
+			model.addAttribute("prevId", prevId);
+			model.addAttribute("nextId", nextId);
+		}
+		
+		
+		
+		
+		
+		
+		
 		
 		// 이전이나 다음이 없는 경우 nextId, prevId를 0으로 세팅한다.(뷰화면에서 0인지 검사)
 		

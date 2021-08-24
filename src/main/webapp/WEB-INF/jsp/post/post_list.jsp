@@ -18,7 +18,8 @@
 				<tr>
 					<td>${post.id}</td>
 					<td>
-						<a href="/post/post_detail_view?postId=${post.id}">${post.subject}</a>
+						<%-- <a href="/post/post_detail_view?postId=${post.id}">${post.subject}</a> --%>
+						${post.subject}
 					</td>
 					<td>
 						<%-- ${post.createdAt} (Date 객체)를 String Format으로 바꾸어 출력한다. --%>
@@ -48,6 +49,6 @@
 		
 		<div class="float-right">
 			<a href="/post/post_create_view" class="btn btn-primary">글쓰기</a>
-		</div>
+		</div> 
 	</div>
 </div>
