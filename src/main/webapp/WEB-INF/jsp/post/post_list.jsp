@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="d-flex justify-content-center">
 	<div class="w-50">
 		<h1>글 목록</h1>
@@ -18,8 +20,8 @@
 				<tr>
 					<td>${post.id}</td>
 					<td>
-						<%-- <a href="/post/post_detail_view?postId=${post.id}">${post.subject}</a> --%>
-						${post.subject}
+						<a href="/post/post_detail_view?postId=${post.id}">${post.subject}</a>
+						
 					</td>
 					<td>
 						<%-- ${post.createdAt} (Date 객체)를 String Format으로 바꾸어 출력한다. --%>

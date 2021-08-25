@@ -56,5 +56,28 @@ private Logger logger = LoggerFactory.getLogger(this.getClass());
 	   return postDAO.selectPostListByUserId(userId, direction, standardId, POST_MAX_SIZE);
    }
    
-  
+   public boolean isLastPage(int userId, int nextId) {
+		return nextId == postDAO.selectPostIdByUserIdAndSort(userId, "ASC");
+	}
+	
+	public boolean isFirstPage(int userId, int prevId) {
+		return prevId == postDAO.selectPostIdByUserIdAndSort(userId, "DESC");
+	}
+	
+	public int createPost(String loginId, int userId, String subject, String content, MultipartFile file) {
+		String imagePath = null;
+		if (file != null) {
+			try {
+				imagePath = fileManagerService.saveFile(loginId, file); // 컴퓨터에 파일 업로드 후 URL path를 얻어낸다.
+			} catch (IOException e) {
+				logger.error("[파일업로드 에러] " + e.getMessage());
+			}
+		}
+		
+		return postDAO.insertPost(userId, subject, content, imagePath);
+	}
+	
+	public Post getPost(int postId) {
+		return postDAO.selectPost(postId);
+	}
 }

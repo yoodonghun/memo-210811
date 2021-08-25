@@ -36,6 +36,73 @@
 		   </if>
 		LIMIT ${limit}
 	</select>
+	
+	<select id="selectPostIdByUserIdAndSort" parameterType="map" resultType="int">
+		SELECT
+			`id`
+		FROM 
+			`post`
+		WHERE
+			`userId` = #{userId}
+		ORDER BY `id` ${sort}
+		LIMIT 1
+	</select>
+	
+	<insert id="insertPost" parameterType="map">
+		INSERT INTO `post`
+		(
+			`userId`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{userId}
+			, #{subject}
+			, #{content}
+			, #{imagePath}
+			, NOW()
+			, NOW()
+		)
+	</insert>
+	
+	<select id="selectPost" parameterType="int" resultType="com.memo.post.model.Post">
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`post`
+		WHERE
+			`id` = #{postId}
+	</select>
+	
+	<update id="updatePost" parameterType="map">
+		UPDATE `post`
+		SET
+			`subject` = #{subject}
+			, `content` = #{content}
+			, updatedAt = NOW()
+			<!-- imagePath가 있을 때만 수정한다. -->
+			<if test="imagePath != null">, imagePath = #{imagePath}</if>
+		WHERE
+			`id` = #{id}
+	</update>
+	
+	<delete id="deletePost" parameterType="int">
+		DELETE
+		FROM
+			`post`
+		WHERE
+			`id` = #{id}
+	</delete>
 
 	
 </mapper>
