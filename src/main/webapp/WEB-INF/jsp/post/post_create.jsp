@@ -88,8 +88,11 @@ $(document).ready(function() {
 					location.href = "/post/post_list_view";
 				}
 			},
-			error: function(e) {
-				alert("메모 저장에 실패했습니다. 관리자에게 문의해주세요8.");
+			error: function(request,status,error) {
+				alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+			},
+			complete : function(data) {
+				
 			}
 		});
 	});
